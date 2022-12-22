@@ -20,7 +20,10 @@ def main(myblob: func.InputStream,
     
 def _validateJSON(jsonData):
     try:
-        json.loads(jsonData)
+        if (len(jsonData) > 4):
+            json.loads(jsonData)
+        else:
+            raise ValueError()
     except ValueError as err:
         logging.error("An invalid json was sent! Please verify!")
         return False
