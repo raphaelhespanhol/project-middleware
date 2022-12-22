@@ -1,0 +1,47 @@
+version: '3'
+services:
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: azurite
+    restart: always
+    ports:
+      - "10000:10000"
+      - "10001:10001"
+      - "10002:10002"
+    networks:
+      acelen_network:
+            ipv4_address: 173.101.101.101
+
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=4Dm1N_123
+    ports:
+      - "1433:1433"
+    networks:
+      acelen_network:
+        ipv4_address: 173.101.101.102
+
+#  sqlcmd:
+#    image: mcr.microsoft.com/mssql-tools:latest
+#    container_name: sqlcmd
+#    volumes:
+#       - /Users/rhespanhol/Develop/code/pocs/next-mktp-router/component-tests/docker/database_scripts/to_docker:/opt/database_scripts
+#    command: '/opt/database_scripts/create-dbs.sh'
+#    networks:
+#        acelen_network:
+#            ipv4_address: 173.101.101.104
+
+networks:
+  acelen_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 173.101.101.0/24
+        gateway: 173.101.101.1

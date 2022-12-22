@@ -1,0 +1,12 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "msgInQueue",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "onboarding-rhespanhol-queue",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}

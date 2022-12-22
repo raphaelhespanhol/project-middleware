@@ -1,0 +1,19 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "myblob",
+      "type": "blobTrigger",
+      "direction": "in",
+      "path": "onboarding-rhespanhol/landing/{name}",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "msgOutQueue",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "onboarding-rhespanhol-queue",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
