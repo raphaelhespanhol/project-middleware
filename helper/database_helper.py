@@ -4,6 +4,7 @@ import os
 from sqlalchemy import create_engine, insert, MetaData, Table, Column, Integer, Boolean, Date, Time
 from sqlalchemy.orm import mapper
 from sqlalchemy.sql import select
+from models.status_model import Status
 
 class DatabaseHelper:
     def __init__(self):
@@ -11,7 +12,7 @@ class DatabaseHelper:
         self.conn = self.engine.connect()
         self.metadata = MetaData()
         try:
-            self.Status = Table('tb_status', self.metadata,
+            self.Status = Table('status', self.metadata,
               Column('id', Integer(),primary_key=True),
               Column('active', Boolean(), default=True),
               Column('date', Date, nullable=False),
