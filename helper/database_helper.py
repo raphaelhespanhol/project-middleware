@@ -11,17 +11,6 @@ class DatabaseHelper:
         self.engine = create_engine(os.getenv("DATABASE_URL"))
         self.conn = self.engine.connect()
         self.metadata = MetaData()
-        try:
-            self.Status = Table('status', self.metadata,
-              Column('id', Integer(),primary_key=True),
-              Column('active', Boolean(), default=True),
-              Column('date', Date, nullable=False),
-              Column('hour', Time, nullable=False)
-              )
-            self.metadata.create_all(self.engine)
-            logging.info("New status table generated with success")
-        except Exception as e:
-            logging.error(f"Table status already exists in database! Details: {e}")
 
     def insert_status(self, data):
         try:
@@ -30,7 +19,7 @@ class DatabaseHelper:
             date = date_time.strftime("%Y-%m-%d")
             time = date_time.strftime("%H:%M:%S")
 
-            query = insert(self.Status).values(id=data['id'], active=status, date=date, hour=time)
+            query = insert(Status).values(id=data['id'], active=status, date=date, hour=time)
             self.conn.execute(query)
             logging.info("A new record was saved in status table")
         except Exception as e:
