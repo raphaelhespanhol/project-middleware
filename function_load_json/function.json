@@ -14,6 +14,20 @@
       "direction": "out",
       "queueName": "onboarding-rhespanhol-queue",
       "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "outProcessedBlob",
+      "type": "blob",
+      "direction": "out",
+      "path": "onboarding-rhespanhol/processed/{name}",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "name": "outErrorBlob",
+      "type": "blob",
+      "direction": "out",
+      "path": "onboarding-rhespanhol/error/{name}",
+      "connection": "AzureWebJobsStorage"
     }
   ]
 }
